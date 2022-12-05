@@ -58,7 +58,7 @@ export default function MainNav() {
                 expanded={isExpanded}
             >
                 <Container>
-                    <Navbar.Brand>Nghi Phuong Huynh Pham</Navbar.Brand>
+                    <Navbar.Brand>Jilesh Sanjaykumar Patel</Navbar.Brand>
                     <Navbar.Toggle
                         aria-controls='navbarScroll'
                         onClick={() => setIsExpanded((prevState) => !prevState)}

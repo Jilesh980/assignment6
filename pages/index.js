@@ -6,7 +6,7 @@
  *
  * Name: Jilesh Sanjaykumar Patel - Student ID: 133261206 - Date: Dec 4, 2022
  *
- * Vercel App (Deployed) Link: https://web422-as6-ui.vercel.app/
+ * Vercel App (Deployed) Link:
  *
  ********************************************************************************/
 

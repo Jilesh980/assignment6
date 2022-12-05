@@ -5,7 +5,7 @@ import { SWRConfig } from 'swr'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
+         <Layout>
       <SWRConfig value={{
         fetcher: async url => {
           const res = await fetch(url)
@@ -16,14 +16,17 @@ function MyApp({ Component, pageProps }) {
             throw error
           }
           return res.json()
-        }
-      }}>
-        <Component {...pageProps} />
-      </SWRConfig>
-    </Layout>
+          }
+        }}>
+            <Component {...pageProps} />
+           </SWRConfig>
+        </Layout>
   )
 }
 
-export default MyApp
+
+
+
+    export default MyApp
 
 

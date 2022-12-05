@@ -9,7 +9,7 @@ const ObjectID = () => {
     return (
         <Row>
             <Col>
-                <ArtworkCardDetail objectID={objectID} />
+                   <ArtworkCardDetail objectID={objectID} />
             </Col>
         </Row>
     )

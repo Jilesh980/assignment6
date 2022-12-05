@@ -8,16 +8,17 @@ import { Card } from "react-bootstrap"
 
 const History = () => {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
-    let parsedHistory = []
+         let parsedHistory = []
     const router = useRouter()
 
     function historyClicked(e, index) {
         router.push(`/artwork?${searchHistory[index]}`)
     }
 
-    function removeHistoryClicked(e, index) {
-        e.stopPropagation();
-        setSearchHistory(curr => {
+
+         function removeHistoryClicked(e, index) {
+           e.stopPropagation();
+          setSearchHistory(curr => {
             let x = [...curr]
             x.splice(index, 1)
             return x

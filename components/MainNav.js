@@ -30,7 +30,7 @@ export default function MainNav() {
         <>
             <Navbar className="fixed-top" bg="primary" variant="dark" expand='lg' expanded={isExpanded}>
                 <Container>
-                    <Navbar.Brand>Darsh Chirag Padaria</Navbar.Brand>
+                    <Navbar.Brand>JILESH PATEL</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={e => setExpanded(!isExpanded)} />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto" >
@@ -44,14 +44,14 @@ export default function MainNav() {
                         </Nav>
                         &nbsp;
                         <Form className="d-flex" onSubmit={submitForm}>
-                            <Form.Control
+                                 <Form.Control
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                            />
+                                       />
                             <Button type="submit" className="btn btn-success">Search</Button>
                         </Form>
                         &nbsp;

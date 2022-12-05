@@ -8,9 +8,9 @@ import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 const ArtworkCardDetail = (props) => {
-    const [favouritesList, setFavouritesList] = useAtom(favouritesAtom)
-    const [showAdded, setShowAdded] = useState(favouritesList.includes(props.objectID) ? true : false)
-    const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null)
+        const [favouritesList, setFavouritesList] = useAtom(favouritesAtom)
+        const [showAdded, setShowAdded] = useState(favouritesList.includes(props.objectID) ? true : false)
+        const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null)
 
     function favouritesClicked() {
         if (showAdded) {

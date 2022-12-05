@@ -11,7 +11,7 @@ const AdvancedSearch = () => {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
     const { register, handleSubmit, setValue, formState: { errors } } = useForm({ })
 
-    function submitForm(data) {
+      function submitForm(data) {
         let queryString = ""
         queryString += `${data.searchBy}=true`
         if (data.geoLocation) {

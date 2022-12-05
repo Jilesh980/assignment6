@@ -3,13 +3,13 @@ import { useAtom } from "jotai"
 import { Row, Col, Card } from "react-bootstrap"
 import ArtworkCard from "../components/ArtworkCard"
 
-const Favourites = () => {
+      const Favourites = () => {
 
     const [favouritesList, setFavouritesList] = useAtom(favouritesAtom)
     return (
-        <>
-            <Row className="gy-4">
-                {
+            <>
+                 <Row className="gy-4">
+                   {
                     favouritesList.length > 0 ? favouritesList.map(objectID => {
                         return (
                             <Col lg={3} key={objectID}>
@@ -22,10 +22,12 @@ const Favourites = () => {
                             Try adding some new artwork to the list.
                         </Card.Body>
                     </Card>
-                }
-            </Row>
-        </>
+                   }
+                 </Row>
+           </>
     )
 }
+
+
 
 export default Favourites

@@ -1,57 +1,78 @@
-import { useAtom } from "jotai"
-import { searchHistoryAtom } from "../store"
-import { useRouter } from "next/router"
-import { ListGroup } from "react-bootstrap"
-import { Button } from "react-bootstrap"
-import styles from "../styles/History.module.css"
-import { Card } from "react-bootstrap"
+import styles from '../styles/History.module.css'
+import { useRouter } from 'next/router'
+import { Row, Card, ListGroup, Button } from 'react-bootstrap'
 
-const History = () => {
-    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
-         let parsedHistory = []
+import { useAtom } from 'jotai'
+import { searchHistoryAtom } from '../store'
+
+import { removeFromHistory } from '../lib/userData'
+
+export default function SearchHistory() {
     const router = useRouter()
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
 
-    function historyClicked(e, index) {
+    let parsedHistory = []
+    searchHistory.forEach((h) => {
+        let params = new URLSearchParams(h)
+        let entries = params.entries()
+        parsedHistory.push(Object.fromEntries(entries))
+    })
+
+    const historyClicked = (e, index) => {
+        e.preventDefault()
         router.push(`/artwork?${searchHistory[index]}`)
     }
 
-
-         function removeHistoryClicked(e, index) {
-           e.stopPropagation();
-          setSearchHistory(curr => {
-            let x = [...curr]
-            x.splice(index, 1)
-            return x
-        })
+    const removeHistoryClicked = async (e, index) => {
+        e.stopPropagation() // stop the event from triggering other events
+        setSearchHistory(await removeFromHistory(searchHistory[index]))
     }
-    searchHistory.forEach(item => {
-        let params = new URLSearchParams(item);
-        let entries = params.entries();
-        parsedHistory.push(Object.fromEntries(entries));
-    })
+
+    if (!searchHistory) return null
+
     return (
-        <>
-            {
-                parsedHistory.length > 0 ?
-                    <ListGroup>
-                        {parsedHistory.map((historyItem, index) => {
-                            return (
-                                <ListGroup.Item key={index} className={styles.historyListItem} onClick={e => historyClicked(e, index)}>
-                                    {Object.keys(historyItem).map(key => { return (<>{key}: <strong>{historyItem[key]}</strong>&nbsp;</>) })}
-                                    <Button className="float-end" variant="danger" size="sm" onClick={e => removeHistoryClicked(e, index)}>&times;</Button>
-                                </ListGroup.Item>
-                            )
-                        })}
-                    </ListGroup> :
+        searchHistory && (
+            <Row className='gy-4'>
+                {!searchHistory.length ? (
                     <Card>
                         <Card.Body>
-                            <h4>Nothing Here</h4>
-                            Try searching for some artwork.
+                            <Card.Title>
+                                <h4>Nothing Here</h4>
+                            </Card.Title>
+                            <Card.Text>
+                                Nothing Here. Try searching for some artwork
+                            </Card.Text>
                         </Card.Body>
                     </Card>
-            }
-        </>
+                ) : (
+                    <ListGroup>
+                        {parsedHistory.map((h, index) => (
+                            <ListGroup.Item
+                                key={index}
+                                onClick={(e) => historyClicked(e, index)}
+                                className={styles.historyListItem}
+                            >
+                                {Object.keys(h).map((key) => (
+                                    <>
+                                        {key}: <strong>{h[key]}</strong>
+                                        &nbsp;
+                                    </>
+                                ))}
+                                <Button
+                                    className='float-end'
+                                    variant='danger'
+                                    size='sm'
+                                    onClick={(e) =>
+                                        removeHistoryClicked(e, index)
+                                    }
+                                >
+                                    &times;
+                                </Button>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                )}
+            </Row>
+        )
     )
 }
-
-export default History

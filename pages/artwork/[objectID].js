@@ -1,18 +1,15 @@
-import React from 'react'
-import ArtworkCardDetail from '../../components/ArtworkCardDetail'
-import { Row, Col } from 'react-bootstrap'
+import { ArtworkCardDetail } from '../../components'
 import { useRouter } from 'next/router'
+import { Row, Col } from 'react-bootstrap'
 
-const ObjectID = () => {
-    const router = useRouter()
-    const { objectID } = router.query;
+export default function ArtworkById() {
+    const { query } = useRouter()
+
     return (
         <Row>
             <Col>
-                   <ArtworkCardDetail objectID={objectID} />
+                <ArtworkCardDetail objectID={query.objectID} />
             </Col>
         </Row>
     )
 }
-
-export default ObjectID
